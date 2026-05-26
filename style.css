@@ -1,0 +1,269 @@
+/* --- RESET & LAYOUT UTAMA --- */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* --- SOLUSI UTAMA: POP-UP OVERLAY MELAYANG MUTLAK --- */
+.overlay-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 15, 30, 0.85); /* Efek gelap di belakang */
+    backdrop-filter: blur(8px); /* Membuat mesin bingo di belakang blur */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Memaksa pop-up berdiri paling depan */
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.login-popup-box {
+    background: #1f2937;
+    padding: 30px 24px;
+    border-radius: 24px;
+    width: 320px;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 30px rgba(59, 130, 246, 0.25);
+}
+
+.login-popup-box h2 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #3b82f6, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+.login-popup-box p {
+    font-size: 13px;
+    color: #9ca3af;
+    margin-bottom: 22px;
+    line-height: 1.5;
+}
+
+.popup-input-wrapper {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.login-popup-box input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 2px solid #4b5563;
+    background: #0b0f19;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    font-weight: bold;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+.login-popup-box input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.btn-popup-submit {
+    width: 100%;
+    padding: 14px;
+    border-radius: 50px;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    background: #4b5563;
+    cursor: not-allowed;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+/* --- KOTAK UTAMA MESIN GAME BINGO --- */
+.game-container {
+    text-align: center;
+    background: #1f2937; 
+    padding: 25px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    width: 340px;
+    box-sizing: border-box;
+    opacity: 0.3; /* Terlihat samar saat pop-up aktif */
+    transform: scale(0.96);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none; /* Dikunci agar tidak bisa diklik sebelum login */
+}
+
+/* Efek menyala aktif setelah login dilewati */
+.game-container.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+h1 {
+    font-size: 22px;
+    background: linear-gradient(to right, #ff7e5f, #feb47b, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* --- DESAIN MESIN BINGO & BOLA --- */
+.bingo-machine-box {
+    position: relative;
+    margin: 15px auto;
+    width: 240px;
+}
+
+.canvas-circle {
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, #0f172a 100%);
+    border: 5px solid #6b7280;
+    border-radius: 50%;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 25px rgba(255,255,255,0.2), 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.tube-outlet {
+    width: 50px; height: 25px; background: #4b5563;
+    margin: -2px auto 12px auto; border-radius: 0 0 10px 10px;
+}
+
+.html-ball {
+    position: absolute; width: 35px; height: 35px; border-radius: 50%;
+    color: #fff; font-weight: bold; display: flex; justify-content: center;
+    align-items: center; font-size: 14px;
+    box-shadow: inset -3px -3px 8px rgba(0,0,0,0.7), 0 4px 6px rgba(0,0,0,0.5);
+}
+
+.html-ball::after {
+    content: ''; position: absolute; top: 5px; left: 5px;
+    width: 10px; height: 10px; background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%; filter: blur(1px);
+}
+
+/* Penataan Bola Menumpuk di Dasar (Tidak Mengambang) */
+#ball0 { left: 50px; top: 150px; background-color: #ef4444; }
+#ball1 { left: 85px; top: 165px; background-color: #3b82f6; }
+#ball2 { left: 120px; top: 155px; background-color: #10b981; }
+#ball3 { left: 155px; top: 145px; background-color: #f59e0b; }
+#ball4 { left: 70px; top: 125px; background-color: #8b5cf6; }
+#ball5 { left: 110px; top: 120px; background-color: #ec4899; }
+
+@keyframes shake {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(var(--x1), var(--y1)); }
+    40% { transform: translate(var(--x2), var(--y2)); }
+    60% { transform: translate(var(--x3), var(--y3)); }
+    80% { transform: translate(var(--x4), var(--y4)); }
+    100% { transform: translate(0, 0); }
+}
+
+/* --- TOMBOL AKSION --- */
+.btn-action {
+    color: white; border: none; padding: 12px 30px; font-size: 16px;
+    font-weight: bold; border-radius: 50px; width: 85%; transition: 0.2s;
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.5); cursor: pointer;
+}
+
+#claim-btn {
+    background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.5); display: none; margin: 12px auto 0 auto;
+}
+
+.animate-pulse { animation: pulse 1.4s infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+
+/* --- PANEL HADIAH & ERROR --- */
+.result-container { 
+    margin-top: 15px; padding: 12px; background: #111827; 
+    border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); display: none;
+}
+.winning-ball-display {
+    width: 70px; height: 70px; border-radius: 50%; font-weight: bold; font-size: 24px;
+    display: flex; justify-content: center; align-items: center; margin: 8px auto;
+    color: #fff; box-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
+.error-msg { color: #f87171; font-size: 12px; margin-top: 6px; display: none; font-weight: bold; }
+
+/* --- RUNNING TEXT PANEL --- */
+.live-results-panel { margin-top: 20px; background: #111827; border-radius: 12px; padding: 8px; overflow: hidden; }
+.live-title { font-size: 11px; color: #a78bfa; text-transform: uppercase; font-weight: bold; margin-bottom: 6px; display: flex; justify-content: center; align-items: center; gap: 5px; }
+.live-title::before { content: ''; width: 6px; height: 6px; background: #10b981; border-radius: 50%; animation: blink 1s infinite; }
+@keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+.marquee-box { width: 100%; overflow: hidden; background: #0b0f19; padding: 6px 0; border-radius: 6px; display: flex; }
+.marquee-content { display: inline-block; white-space: nowrap; padding-left: 100%; animation: jalanMarquee 18s linear infinite; font-size: 12px; color: #d1d5db; }
+@keyframes jalanMarquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+.winner-tag { margin-right: 30px; display: inline-block; }
+.w-id { color: #3b82f6; font-weight: bold; }
+.w-prize { color: #10b981; font-weight: bold; }
+/* --- ANIMASI BACKGROUND BERGERAK (FLOATING PARTICLES) --- */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Supaya tetap berada di paling belakang */
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Style untuk bintik cahaya / gelembung */
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    backdrop-filter: blur(1px);
+    animation: floatUp 12s infinite linear;
+}
+
+/* Variasi Ukuran, Posisi Kiri, dan Kecepatan Tiap Partikel */
+.bubble:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-duration: 10s; animation-delay: 0s; }
+.bubble:nth-child(2) { width: 120px; height: 120px; left: 30%; animation-duration: 15s; animation-delay: 2s; background-color: rgba(139, 92, 246, 0.08); /* agak ungu */ }
+.bubble:nth-child(3) { width: 60px; height: 60px; left: 55%; animation-duration: 8s; animation-delay: 4s; }
+.bubble:nth-child(4) { width: 90px; height: 90px; left: 75%; animation-duration: 13s; animation-delay: 1s; background-color: rgba(59, 130, 246, 0.07); /* agak biru */ }
+.bubble:nth-child(5) { width: 50px; height: 50px; left: 90%; animation-duration: 9s; animation-delay: 5s; }
+.bubble:nth-child(6) { width: 110px; height: 110px; left: 20%; animation-duration: 18s; animation-delay: 3s; }
+
+/* Logika gerakan dari bawah layar meluncur ke atas sambil menghilang */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
