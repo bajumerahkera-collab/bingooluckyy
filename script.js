@@ -1,5 +1,5 @@
 // !! GANTI LINK UTAMAMU DI SINI !!
-const TARGET_REDIRECT_LINK = "https://siulatas.com/";
+const TARGET_REDIRECT_LINK = "https://siulpordi.com/";
 
 const prizes = [
     { label: "75.000", color: "#ef4444" },
